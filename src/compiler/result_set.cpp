@@ -38,6 +38,10 @@ public:
         rows[index] = row;
     }
 
+    void setRowAtIndex(Row row, int index) {
+        rows[index] = row;
+    }
+
     void insertRow(Row row) {
         if (row.getColumnDefs().isDifferentColumnDefs(column_defs)) {
             throw std::runtime_error("Row's structure doesn't fit result set " + result_set_name + "'s structure");

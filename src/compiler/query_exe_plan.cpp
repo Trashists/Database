@@ -309,4 +309,45 @@ public:
     void execute_CREATE_DATABASE_clause(string database_name) {
         engine.createDatabase(database_name);
     }
+
+    ResultSet execute_ORDER_BY_clause(ResultSet result_set, string request) {
+        int size = result_set.getRowCount();
+        string column_name;
+        stringstream ss(request);
+        string token;
+        ResultSet reslt_set;
+
+        reslt_set.setRowCount(size);
+        reslt_set.setName(result_set.getName());
+        ColumnDefs newColumnDefs = result_set.getColumnDefs();
+        reslt_set.setColumnDefs(newColumnDefs);
+        string col_name, order;
+
+        while (getline(ss, token, ',')) {
+            // Remove leading/trailing whitespaces from each token
+            size_t startPos = token.find_first_not_of(" ");
+            size_t endPos = token.find_last_not_of(" ");
+            token = token.substr(startPos, endPos - startPos + 1);
+            size_t sep = token.find(' ');
+            col_name = token.substr(0, sep);
+            order = token.substr(sep + 1);
+        }
+
+        vector<pair<DBValue, int> > valueList;
+        for (int index = 0; index < size; index++) {
+            Row current_row = result_set.readRow(index);
+            valueList.push_back(make_pair(current_row.getValueByColumnName(col_name), index));
+        }
+
+        // sort by ascending order (ASC)
+        if (order == "ASC") sort(valueList.begin(), valueList.end());
+        // sort by descending order (DESC)
+        else sort(valueList.rbegin(), valueList.rend());
+
+        for (int index = 0; index < size; index++) {
+            Row current_row = result_set.readRow(valueList[index].second);
+            reslt_set.setRowAtIndex(current_row, index);
+        }
+        return reslt_set;
+    }
 };
