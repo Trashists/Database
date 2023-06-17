@@ -1,0 +1,82 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.hexeditor",
+        "ms-vscode.cmake-tools",
+        "vscode-icons-team.vscode-icons"
+      ],
+      "settings": {
+        "editor.minimap.enabled": false,
+        "editor.renderWhitespace": "selection",
+        "files.autoSave": "afterDelay",
+        "files.exclude": {
+          "**/.*": true
+        },
+        "files.trimTrailingWhitespace": true,
+        "files.watcherExclude": {
+          "**/.git/objects/**": true,
+          "**/.git/subtree-cache/**": true,
+          "**/node_modules/*/**": true
+        },
+        "git.autofetch": true,
+        "git.decorations.enabled": false,
+        "git.terminalAuthentication": true,
+        "gitdoc.autoPull": "off",
+        "gitdoc.commitMessageFormat": "ccc, LLL d, kkkk, h:mm a ZZ",
+        "gitdoc.commitValidationLevel": "none",
+        "gitdoc.enabled": true,
+        "gitdoc.pullOnOpen": false,
+        "github.codespaces.devcontainerChangedNotificationStyle": "none",
+        "github.gitAuthentication": true,
+        "problems.decorations.enabled": false,
+        "remote.otherPortsAttributes": {
+          "onAutoForward": "silent"
+        },
+        "scm.countBadge": "off",
+        "terminal.integrated.commandsToSkipShell": [
+          "workbench.action.toggleSidebarVisibility"
+        ],
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.enableBell": true,
+        "terminal.integrated.gpuAcceleration": "off",
+        "terminal.integrated.persistentSessionReviveProcess": "never",
+        "terminal.integrated.profiles.linux": {
+          "JavaScript Debug Terminal": null,
+          "bash": {
+            "args": ["--login"],
+            "icon": "terminal",
+            "path": "bash"
+          }
+        },
+        "terminal.integrated.sendKeybindingsToShell": true,
+        "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+        "terminal.integrated.shellIntegration.enabled": true,
+        "terminal.integrated.tabs.description": "${task}${separator}${local}",
+        "terminal.integrated.tabs.showActiveTerminal": "never",
+        "window.autoDetectColorScheme": true,
+        "window.commandCenter": false,
+        "workbench.editorAssociations": {
+          "*.bin": "hexEditor.hexedit"
+        },
+        "workbench.editor.closeOnFileDelete": true,
+        "workbench.editor.enablePreview": false,
+        "workbench.editor.untitled.hint": "hidden",
+        "workbench.colorTheme": "Default Dark+",
+        "workbench.iconTheme": "vscode-icons",
+        "workbench.startupEditor": "none",
+        "workbench.statusBar.visible": false,
+        "workbench.tips.enabled": false,
+        "workbench.welcomePage.walkthroughs.openOnInstall": false
+      }
+    }
+  },
+  "build": {
+    // Path is relataive to the devcontainer.json file.
+    "dockerfile": "Dockerfile"
+  },
+  "remoteEnv": {
+    "TZ": "${localEnv:CS50_TZ}"
+  }
+}
